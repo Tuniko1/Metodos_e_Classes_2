@@ -1,12 +1,11 @@
 package principal;
 
-import java.awt.Menu;
 import java.util.Scanner;
 
+import modules.MenuTv;
 import modules.Televisor;
 
 public class Program {
-
 						/*aumentarVolume()    // Aumenta em 1 o volume OK 	
 						reduzirVolume()        // Diminui em 1 o volume 
 						subirCanal()        // Aumenta em 1 o canal 
@@ -17,52 +16,37 @@ public class Program {
 						 */
 	Televisor tv = new Televisor();
 	
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		char opcao;
 		 
+		System.out.println("Ligar Televisão?");
+		opcao = sc.next().charAt(0);
+		if (opcao == 's'|| opcao =='S') {
+			Televisor.ligado = true;
+			System.out.println("Televisão Ligada!\n");
+			System.out.println("Status: "+Televisor.ligado);
+			
 			do {
 				
 				System.out.println("Mostrar menu? Sim ou Não");
 				opcao = sc.next().charAt(0);
 					if (opcao == 's'||opcao == 'S') {
-				Menus();
+				MenuTv.Menus();
 					}else {
-					System.exit(0);
+					System.out.println("Fechando controles...");
+					System.out.println("Status: "+Televisor.ligado);
 					sc.close();
 					}
 			}while(opcao == 's');
-	}
 	
-	// Menu de controles
-	public static void Menus() {
-		
-		Scanner sc = new Scanner(System.in);
-		
-		
-			int opcao;		
-			System.out.println("Entre com a opção desejada:");
-			System.out.println("1 - Aumentar Volume");
-			System.out.println("2 - Diminuir Volume ");
-			System.out.println("3 - Programa");
-			opcao = sc.nextInt();
-			Televisor tv = new Televisor();
-			switch (opcao){
-			
-			case 1:
-				tv.aumentarVolume(0);
-				
-				break;
-			case 2:
-				tv.reduzirVolume(0);
-			
-				break;
-			case 3:
-								
-				break;
-			default: System.out.println("Opção inválida!");
-			
-			sc.close();
+		}else {
+			System.out.println("Desligando...");
+			System.out.println("Status: "+Televisor.ligado);
+			System.exit(0);
 		}
+	
+	
 	}
 }
